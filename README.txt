@@ -52,5 +52,8 @@ Exit{
     --> Exits the game (program terminates)
 }
 
----------------------------------------------------------------------#------------------------------------------------------------------------
+--> UML Class Diagram Link (Miro): https://miro.com/app/board/uXjVLbvTwdE=/?share_link_id=212449129682
 
+--> UML Use Case Diagram Link (LucidChart): https://lucid.app/lucidchart/bb806432-fe5d-432e-b03f-a2cc36e8fa99/edit?viewport_loc=30%2C-563%2C2752%2C1173%2C0_0&invitationId=inv_e9c8cf9e-448c-4ec9-95a4-a85987560789
+
+---------------------------------------------------------------------#------------------------------------------------------------------------
