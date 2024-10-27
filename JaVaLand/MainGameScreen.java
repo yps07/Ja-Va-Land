@@ -75,6 +75,10 @@ public class MainGameScreen implements Screen {
         button.setPosition(935, 25);
         stage.addActor(button);
 
+        TextButton button1 = new TextButton("[by Ja Va Land]", textButtonStyle);
+        button1.setPosition(28, 25);
+        stage.addActor(button1);
+
         button.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
