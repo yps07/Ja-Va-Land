@@ -48,6 +48,35 @@ Exit{
     --> Exits the game (program terminates)
 }
 
+**How to run JUnit Tests:
+
+The test case classes as well as the test runner can be found in the \Angry_Birds by Ja_Va_Land\core\src\test\java directory.
+
+There are 4 tests{
+     BlockTestCase{
+             --> tests the damage updation code for a block class instance.
+             --> a wood block is tested (durability = 30), damage dealt is 5, the test should be successfull, updating the durability to 25.
+     }
+
+     PigTestCase{
+             --> tests the damage updation code for a pig class instance.
+             --> a small_pig is tested (durability = 50), damage dealt is 5, the test should be successfull, updating the durability to 45.
+     }
+
+     ReadFileTestCase{
+             --> tests the reading ability of the FileHandler class which reads any type of file (.ser in our case).
+             --> a file is read using the FileHandler class which does not exist, the class should throw an exception in this case.
+             --> the test should be successfull displaying the exception message in the command line: Error reading from file: assets\files\saved_games_1.ser (The system cannot find the file specified)
+     }
+
+     WriteFileTestCase{
+             --> tests the writing ability of the FileHandler class which reads any type of file (.ser in our case).
+             --> a file is written on using the FileHandler class which does exists, the class should be able to write a GameState class instance into the provided .ser file without an exception.
+             --> the test should be successfull.
+     }
+
+}
+
 --> UML Class Diagram Link (Miro): https://miro.com/app/board/uXjVLbvTwdE=/?share_link_id=418057852281
 
 --> UML Use Case Diagram Link (LucidChart): https://lucid.app/lucidchart/bb806432-fe5d-432e-b03f-a2cc36e8fa99/edit?viewport_loc=30%2C-563%2C2752%2C1173%2C0_0&invitationId=inv_e9c8cf9e-448c-4ec9-95a4-a85987560789
