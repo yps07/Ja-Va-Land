@@ -2,6 +2,8 @@ package io.github.JaVaLand;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -26,6 +28,9 @@ public class LoseScreen implements Screen {
     private Skin skin, skin1;
     private Stage stage;
 
+    private Music bgm;
+    private Sound click_sound, bird_sound;
+
     public LoseScreen(Core game, int level) {
         this.game = game;
         this.level = level;
@@ -33,6 +38,12 @@ public class LoseScreen implements Screen {
 
     @Override
     public void show() {
+        bgm = Gdx.audio.newMusic(Gdx.files.internal("audio/Sound Effects - level failed piglets a1.mp3"));
+        click_sound = Gdx.audio.newSound(Gdx.files.internal("audio/Sound Effects - ButtonProceed.mp3"));
+
+        bgm.setLooping(true);
+        bgm.play();
+
         img = new Texture("bg.jpg");
         sprite = new Sprite(img);
         sprite.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -101,6 +112,10 @@ public class LoseScreen implements Screen {
 
         stage.act(delta);
         stage.draw();
+
+        if(Gdx.input.justTouched()){
+            click_sound.play(0.9f);
+        }
     }
 
     @Override
@@ -115,7 +130,11 @@ public class LoseScreen implements Screen {
     public void resume() {}
 
     @Override
-    public void hide() {}
+    public void hide() {
+        bgm.stop();
+        bgm.dispose();
+        click_sound.dispose();
+    }
 
     @Override
     public void dispose() {
@@ -123,5 +142,8 @@ public class LoseScreen implements Screen {
         font.dispose();
         skin.dispose();
         stage.dispose();
+        bgm.stop();
+        bgm.dispose();
+        click_sound.dispose();
     }
 }
