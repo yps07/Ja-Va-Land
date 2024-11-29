@@ -1,11 +1,40 @@
-[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
-eclipse.project.name = appName + '-core'
+plugins {
+  id 'java'
+  id 'application'
+}
+
+group 'io.github.JaVaLand'
+version '1.0'
+
+application {
+  mainClass = 'io.github.JaVaLand.Core' // Replace with your main class
+}
+
+// Define versions as variables
+ext {
+  gdxVersion = '1.11.0'
+  graalHelperVersion = '1.0.0' // Replace with the correct version
+  enableGraalNative = 'false' // Set this to 'true' if you want to include GraalVM dependencies
+}
+
+repositories {
+  mavenCentral()
+}
 
 dependencies {
-  api "com.badlogicgames.gdx:gdx:$gdxVersion"
-  implementation "com.badlogicgames.gdx:gdx-freetype:$gdxVersion" // Add this line
+  implementation "com.badlogicgames.gdx:gdx:$gdxVersion"
+  testImplementation "com.badlogicgames.gdx:gdx-backend-headless:$gdxVersion"
+
+  testImplementation 'junit:junit:4.13.2'
+  testImplementation 'org.hamcrest:hamcrest:2.2'
+
+  implementation "com.badlogicgames.gdx:gdx:$gdxVersion"
+  implementation "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
+  implementation "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
+
   runtimeOnly "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
   runtimeOnly "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
+  runtimeOnly "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-desktop"
 
   if (enableGraalNative == 'true') {
     implementation "io.github.berstanio:gdx-svmhelper-annotations:$graalHelperVersion"
