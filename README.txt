@@ -52,6 +52,8 @@ Exit{
 
 The test case classes as well as the test runner can be found in the \Angry_Birds by Ja_Va_Land\core\src\test\java directory.
 
+Just run the TestRunner class to initiate testing.
+
 There are 4 tests{
      BlockTestCase{
              --> tests the damage updation code for a block class instance.
