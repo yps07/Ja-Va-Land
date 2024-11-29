@@ -2,6 +2,8 @@ package io.github.JaVaLand;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -23,12 +25,21 @@ public class MainGameScreen implements Screen {
     private Skin skin;
     private Stage stage;
 
+    private Music bgm;
+    private Sound click_sound;
+
     public MainGameScreen(Core game) {
         this.game = game;
     }
 
     @Override
     public void show() {
+        bgm = Gdx.audio.newMusic(Gdx.files.internal("audio/AB_space_theme.mp3"));
+        click_sound = Gdx.audio.newSound(Gdx.files.internal("audio/Sound Effects - ButtonProceed.mp3"));
+
+        bgm.setLooping(true);
+        bgm.play();
+
         img = new Texture("bgi.jpg");
         img2 = new Texture("abtext.png");
         img3 = new Texture("red.png");
@@ -104,6 +115,10 @@ public class MainGameScreen implements Screen {
 
         stage.act(delta);
         stage.draw();
+
+        if(Gdx.input.justTouched()){
+            click_sound.play(0.9f);
+        }
     }
 
     @Override
@@ -121,7 +136,9 @@ public class MainGameScreen implements Screen {
 
     @Override
     public void hide() {
-        dispose();
+        bgm.stop();
+        bgm.dispose();
+        click_sound.dispose();
     }
 
     @Override
@@ -131,5 +148,8 @@ public class MainGameScreen implements Screen {
         stage.dispose();
         font.dispose();
         skin.dispose();
+        bgm.stop();
+        bgm.dispose();
+        click_sound.dispose();
     }
 }
