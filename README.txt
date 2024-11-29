@@ -1,4 +1,4 @@
------------------------------------------------------------ ANGRY-BIRDS STATIC GUI -----------------------------------------------------------
+----------------------------------------------------------- ANGRY-BIRDS -----------------------------------------------------------
 
 **How to run:
 
@@ -9,7 +9,7 @@ The main screen with a game wallpaper and name (MainGameScreen class)
                             |
                             |
                             V
-                      The Main menu (Menu class)
+                  The Main menu (Menu class)
 
            |                    |                   |
            |                    |                   |
