@@ -1,8 +1,8 @@
------------------------------------------------------------ ANGRY-BIRDS -----------------------------------------------------------
+----------------------------------------------------------- ANGRY-BIRDS by Ja_Va_Land -----------------------------------------------------------
 
 **How to run:
 
-Just run the Lwjgl3Launcher class.
+Just run the Lwjgl3Launcher class (class can be found at the address: \Angry_Birds by Ja_Va_Land\lwjgl3\src\main\java\io\github\JaVaLand\lwjgl3)
 The execution initiates from the Core class via Lwjgl3Launcher and the following screens appear (in order): 
 
 The main screen with a game wallpaper and name (MainGameScreen class)
@@ -11,11 +11,11 @@ The main screen with a game wallpaper and name (MainGameScreen class)
                             V
                   The Main menu (Menu class)
 
-           |                    |                   |
-           |                    |                   |
-           V                    V                   V
-        New Game            Load Game              Exit
-     (Level1 class)       (Level1 class)           ( - )
+           |                    |                            |
+           |                    |                            |
+           V                    V                            V
+        New Game            Load Game                       Exit
+     (Level1 class)       (Level1 class, updated)           ( - )
 
 
 ** Functionalities within screens: 
@@ -27,28 +27,24 @@ New Game{
 
                      --> Resume: returns to the current level screen
 
-                     --> Save & Exit: returns to the menu screen
+                     --> Save & Exit: saves and returns to the menu screen
 
-                     --> Forfeit: displays the losing screen, has the following buttons{
-
-                                      --> Retry: returns to the current level screen                                   
-                     }
+                     --> Forfeit: returns to the menu screen
     }
 
     --> Order of levels: Level 1 (Level1 class) -> Level 2 (Level2 class) -> Level 3 (Level3 class)
 
-    --> After clicking the ">>" button at each level screen, you will be directed to the winning screen which has the following buttons{
+    --> If you exhaust all your birds with still pigs remaining (atleast one) then you'll lose and will be directed to the lose screen where you have the option to retry.
 
-                     --> Next: directs to the next level screen (for level 3 -> returns to the menu screen)
+    --> If you are able to kill all the pigs then you'll win and be directed to the winning screen 
     }
 
 Saved Game{
 
-    --> Has the same functionality as the "New Game" button for now
+    --> recovers the saved game from the .ser file in files folder in the package only. [full path: assets/files/saved_games.ser]
 }
 
 Exit{
-
     --> Exits the game (program terminates)
 }
 
