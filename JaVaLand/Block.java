@@ -1,50 +1,100 @@
 package io.github.JaVaLand;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 
-public abstract class Block {
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public abstract class Block implements Serializable {
     private float durability;
-    private Texture img;
-    private Sprite sprite;
-    private Core game;
+    private transient Texture img;
+    private String path;
 
-    public Block(Core game, float durability, Texture img) {
-        this.game = game;
+    private transient Vector2 position;
+    private float width, height;
+    private boolean isSmashed;
+
+    public Block(float durability, String path) {
+        this.path = path;
+        this.img = new Texture(Gdx.files.internal(path));
         this.durability = durability;
-        this.img = img;
-        sprite = new Sprite(img);
-        sprite.setOrigin(sprite.getWidth() / 2, sprite.getHeight() / 2); // Set origin for rotation
     }
 
-    public void durabilityReduction(float amount) {
-        durability -= amount;
-        if (durability < 0) {
-            durability = 0;
-        }
+    public Block(float durability){
+        this.durability = durability;
     }
 
-    public float getDurability() {
+    public void setPath(String path){
+        img = new Texture(Gdx.files.internal(path));
+    }
+
+    public String getPath(){
+        return path;
+    }
+
+    public ArrayList<Float> get_context(){
+        ArrayList<Float> arr = new ArrayList<>();
+
+        arr.add(position.x);
+        arr.add(position.y);
+
+        return arr;
+    }
+
+    public void set_context(ArrayList<Float> arr){
+        position = new Vector2(arr.get(0), arr.get(1));
+    }
+
+    public void setSize(float x, float y){
+        this.width = x;
+        this.height = y;
+    }
+
+    public void setPosition(float x, float y){
+        position = new Vector2(x, y);
+    }
+
+    public Vector2 getPosition() {
+        return position;
+    }
+
+    public float getHealth() {
         return durability;
     }
 
-    public void setSize(float x, float y) {
-        sprite.setSize(x, y);
-    }
-
     public boolean isSmashed() {
-        return (durability == 0);
+        return isSmashed;
     }
 
-    public void setPosition(float x, float y) {
-        sprite.setPosition(x, y);
+    public float getWidth(){
+        return width;
     }
 
-    public void draw() {
-        sprite.draw(game.batch);
+    public float getHeight(){
+        return height;
     }
 
-    public void dispose() {
+    public void takeDamage(float damage) {
+        if (isSmashed) return;
+
+        durability -= damage;
+
+        if (durability <= 0) {
+            durability = 0;
+            isSmashed = true;
+        }
+    }
+
+    public void draw(SpriteBatch batch) {
+        if (!isSmashed) {
+            batch.draw(img, position.x - width / 2, position.y - height / 2, width, height);
+        }
+    }
+
+    public void dispose(){
         img.dispose();
     }
 }
